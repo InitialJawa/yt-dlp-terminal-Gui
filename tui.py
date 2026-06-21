@@ -63,6 +63,12 @@ def get_key():
 
 def select_menu(items, title):
     idx = 0
+    shortcuts = {}
+    for i, (label, _) in enumerate(items):
+        for ch in ["1","2","3","4","5","6","7","8","9","0","m","b","s","c","p","a","v","d","f","h","n","r"]:
+            if ch in label and ch not in shortcuts:
+                shortcuts[ch] = i
+                break
     while True:
         banner()
         print(f" {BOLD}{title}{R}\n")
@@ -70,12 +76,13 @@ def select_menu(items, title):
             arrow = "▸" if i == idx else " "
             fmt = f"{BOLD}{G}" if i == idx else ""
             print(f"  {arrow} {fmt}{label}{R}")
-        print(f"\n {B}[↑/↓] navigate  [Enter] select  [q] back{R}")
+        print(f"\n {B}[↑/↓]  [Enter] select  [q/b] back{R}")
         key = get_key()
         if key == 'UP': idx = max(0, idx - 1)
         elif key == 'DOWN': idx = min(len(items) - 1, idx + 1)
         elif key in ('\r', '\n'): return items[idx][1]
-        elif key == 'q': return None
+        elif key in ('q', 'b'): return None
+        elif key in shortcuts: return items[shortcuts[key]][1]
 
 def pick_resolution(url):
     banner()
