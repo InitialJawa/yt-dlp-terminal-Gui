@@ -254,13 +254,19 @@ def main():
         if url.lower() == 'q': break
         if not url: continue
 
-        fmt, title = pick_resolution(url)
-        if fmt is None: continue
+        while True:
+            fmt, title = pick_resolution(url)
+            if fmt is None: break
 
-        out_dir = pick_folder()
-        if out_dir is None: continue
+            out_dir = pick_folder()
+            if out_dir is None:
+                banner()
+                print(f" {Y}Back to format selection{R}\n")
+                _ = get_key()
+                continue
 
-        download(url, fmt, out_dir)
+            download(url, fmt, out_dir)
+            break
 
 if __name__ == "__main__":
     try:
