@@ -76,12 +76,12 @@ def select_menu(items, title):
             arrow = "▸" if i == idx else " "
             fmt = f"{BOLD}{G}" if i == idx else ""
             print(f"  {arrow} {fmt}{label}{R}")
-        print(f"\n {B}[↑/↓]  [Enter] select  [q/b] back{R}")
+        print(f"\n {B}[↑/↓]  [Enter/1-9] select  [q] back{R}")
         key = get_key()
         if key == 'UP': idx = max(0, idx - 1)
         elif key == 'DOWN': idx = min(len(items) - 1, idx + 1)
         elif key in ('\r', '\n'): return items[idx][1]
-        elif key in ('q', 'b'): return None
+        elif key == 'q': return None
         elif key in shortcuts: return items[shortcuts[key]][1]
 
 def pick_resolution(url):
