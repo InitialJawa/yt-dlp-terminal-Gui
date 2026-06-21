@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bedilgaib/ytdl.git"
+    "url": "git+https://github.com/InitialJawa/yt-dlp-terminal-Gui.git"
   },
   "keywords": ["yt-dlp", "download", "video", "tui"],
   "license": "MIT"
